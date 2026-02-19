@@ -3,12 +3,15 @@ data/
 model.h5
 mlruns/
 logs/
+models/
 
 # Python cache and build files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.pkl
+.pytest_cache/
 
 # Jupyter and notebook checkpoints
 .ipynb_checkpoints/
@@ -28,12 +31,3 @@ __pycache__/
 *.db
 .venv/
 venv/
-__pycache__/
-*.pkl
-*.pyc
-.pytest_cache/
-.ipynb_checkpoints/
-data/
-models/
-mlruns/
-/data
