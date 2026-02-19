@@ -1,5 +1,3 @@
----
-
 ## Prometheus & Grafana Monitoring
 
 ### Prometheus
