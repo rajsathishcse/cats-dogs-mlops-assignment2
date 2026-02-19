@@ -3,6 +3,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 
+
 def get_data_generators(train_dir, val_dir, test_dir):
     """Return data generators for train, val, and test directories."""
     # Data augmentation for training
