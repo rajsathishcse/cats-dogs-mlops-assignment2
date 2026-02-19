@@ -26,6 +26,10 @@ jobs:
       - name: Create logs directory
         run: mkdir -p logs
 
+      - name: Create dummy model.h5
+        run: |
+          python -c "import tensorflow as tf; model = tf.keras.Sequential([tf.keras.layers.Input(shape=(224,224,3)), tf.keras.layers.Flatten(), tf.keras.layers.Dense(1, activation='sigmoid')]); model.save('model.h5')"
+
       - name: Run tests
         run: pytest
 
