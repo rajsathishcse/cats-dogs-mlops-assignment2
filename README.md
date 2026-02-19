@@ -122,7 +122,8 @@ docker-compose up --build
 
 #### Example: Predict with curl
 ```bash
-
+curl -X POST "http://localhost:8000/predict" -F "file=@path_to_image.jpg"
+```
 ## Prometheus & Grafana Monitoring
 
 ### Prometheus
@@ -141,8 +142,6 @@ docker-compose up --build
 - Create dashboards to visualize request count, latency, and other metrics.
 
 This enables real-time monitoring of your deployed ML API.
-curl -X POST "http://localhost:8000/predict" -F "file=@path_to_image.jpg"
-```
 
 #### FastAPI Docs
 Interactive docs available at [http://localhost:8000/docs](http://localhost:8000/docs)
