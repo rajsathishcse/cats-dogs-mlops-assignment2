@@ -1,7 +1,39 @@
+
+# Script to split raw dataset into train/val/test and copy images
+import os
+import shutil
+import random
+import logging
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(name)s %(message)s',
+    handlers=[
+        logging.FileHandler("logs/prepare_data.log", mode="a"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("prepare_data")
+
+SRC = "data/raw/PetImages"
+DEST = "data"
+
 def is_image(filename):
+    """Check if file is an image."""
+    return filename.lower().endswith((".jpg", ".jpeg", ".png"))
+
 def split_files(files):
-dog_train, dog_val, dog_test = split_files(dogs)
+    """Split files into train/val/test sets."""
+    n = len(files)
+    return files[:int(0.8 * n)], files[int(0.8 * n):int(0.9 * n)], files[int(0.9 * n):]
+
 def safe_copy(src, dst):
+    """Safely copy a file and log errors."""
+    try:
+        shutil.copy2(src, dst)
+    except Exception as e:
+        logger.error(f"Failed to copy {src} to {dst}: {e}")
 
 # Script to split raw dataset into train/val/test and copy images
 import os
