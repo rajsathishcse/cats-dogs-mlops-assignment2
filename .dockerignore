@@ -1,0 +1,10 @@
+venv/
+data/
+.git/
+mlruns/
+.mlflow/
+__pycache__/
+*.pyc
+*.zip
+*.tar
+*.gz

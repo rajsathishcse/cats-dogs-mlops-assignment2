@@ -1,0 +1,39 @@
+# Data and model artifacts
+data/
+model.h5
+mlruns/
+logs/
+
+# Python cache and build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter and notebook checkpoints
+.ipynb_checkpoints/
+
+# DVC and other tool caches
+*.dvc
+*.DS_Store
+
+# Environment and OS files
+.env
+*.env
+*.bak
+*.swp
+
+# Docker/venv
+*.sqlite3
+*.db
+.venv/
+venv/
+__pycache__/
+*.pkl
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+data/
+models/
+mlruns/
+/data
