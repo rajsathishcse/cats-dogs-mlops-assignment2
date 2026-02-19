@@ -1,21 +1,3 @@
-## Prometheus & Grafana Monitoring
-
-### Prometheus
-- A sample `prometheus.yml` is provided to scrape metrics from the FastAPI service at `/metrics`.
-- To run Prometheus locally:
-	1. [Download Prometheus](https://prometheus.io/download/)
-	2. Place `prometheus.yml` in the Prometheus directory.
-	3. Start Prometheus:
-		 ```bash
-		 ./prometheus --config.file=prometheus.yml
-		 ```
-	4. Visit [http://localhost:9090](http://localhost:9090) to view metrics.
-
-### Grafana (Optional)
-- Add Prometheus as a data source in Grafana.
-- Create dashboards to visualize request count, latency, and other metrics.
-
-This enables real-time monitoring of your deployed ML API.
 # Cats vs Dogs MLOps Project
 
 ## Overview
@@ -140,8 +122,28 @@ docker-compose up --build
 
 #### Example: Predict with curl
 ```bash
+
+## Prometheus & Grafana Monitoring
+
+### Prometheus
+- A sample `prometheus.yml` is provided to scrape metrics from the FastAPI service at `/metrics`.
+- To run Prometheus locally:
+	1. [Download Prometheus](https://prometheus.io/download/)
+	2. Place `prometheus.yml` in the Prometheus directory.
+	3. Start Prometheus:
+		 ```bash
+		 ./prometheus --config.file=prometheus.yml
+		 ```
+	4. Visit [http://localhost:9090](http://localhost:9090) to view metrics.
+
+### Grafana (Optional)
+- Add Prometheus as a data source in Grafana.
+- Create dashboards to visualize request count, latency, and other metrics.
+
+This enables real-time monitoring of your deployed ML API.
 curl -X POST "http://localhost:8000/predict" -F "file=@path_to_image.jpg"
 ```
 
 #### FastAPI Docs
 Interactive docs available at [http://localhost:8000/docs](http://localhost:8000/docs)
+
