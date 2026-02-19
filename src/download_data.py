@@ -1,3 +1,24 @@
+import sys
+import os
+import subprocess
+DATASET = "bhavikjikadara/dog-and-cat-classification-dataset"
+
+os.makedirs("data/raw", exist_ok=True)
+def check_kaggle_installed():
+    """Check if Kaggle API is installed."""
+    try:
+def check_kaggle_authenticated():
+    """Check if Kaggle API is authenticated."""
+    kaggle_json = os.path.expanduser("~/.kaggle/kaggle.json")
+check_kaggle_installed()
+check_kaggle_authenticated()
+
+subprocess.run([
+    "kaggle", "datasets", "download",
+    "-d", DATASET,
+    "-p", "data/raw",
+    "--unzip"
+])
 
 import sys
 import os

@@ -1,24 +1,25 @@
 
+def get_data_generators(train_dir, val_dir, test_dir):
+
 # Data generators for training, validation, and test sets
-import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-# Image size and batch size constants
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 
-# Returns data generators for train, val, and test directories
+
 def get_data_generators(train_dir, val_dir, test_dir):
+    """Return data generators for train, val, and test directories."""
     # Data augmentation for training
     train_gen = ImageDataGenerator(
-        rescale=1./255,
+        rescale=1.0 / 255,
         rotation_range=20,
         zoom_range=0.2,
         horizontal_flip=True
     )
 
     # Only rescaling for validation and test
-    val_test_gen = ImageDataGenerator(rescale=1./255)
+    val_test_gen = ImageDataGenerator(rescale=1.0 / 255)
 
     train = train_gen.flow_from_directory(
         train_dir,

@@ -1,7 +1,15 @@
-# Script to split raw dataset into train/val/test and copy images
-import os, shutil, random, logging
+def is_image(filename):
+def split_files(files):
+dog_train, dog_val, dog_test = split_files(dogs)
+def safe_copy(src, dst):
 
-# Set up logger
+# Script to split raw dataset into train/val/test and copy images
+import os
+import shutil
+import random
+import logging
+
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(levelname)s %(name)s %(message)s',
@@ -12,13 +20,29 @@ logging.basicConfig(
 )
 logger = logging.getLogger("prepare_data")
 
-# Source and destination directories
 SRC = "data/raw/PetImages"
 DEST = "data"
 
-# Helper to check if file is an image
+
 def is_image(filename):
+    """Check if file is an image."""
     return filename.lower().endswith((".jpg", ".jpeg", ".png"))
+
+
+import os, shutil, random
+    """Split files into train/val/test sets."""
+    n = len(files)
+    return files[:int(0.8 * n)], files[int(0.8 * n):int(0.9 * n)], files[int(0.9 * n):]
+
+
+
+    """Safely copy a file and log errors."""
+    try:
+        shutil.copy(src, dst)
+        logger.debug(f"Copied {src} to {dst}")
+    except Exception as e:
+        logger.error(f"Failed to copy {src} to {dst}: {e}")
+
 
 # Create output directories for each split/class
 for split in ["train", "val", "test"]:
@@ -34,23 +58,10 @@ logger.info(f"Found {len(cats)} cat images and {len(dogs)} dog images.")
 random.shuffle(cats)
 random.shuffle(dogs)
 
-# Split files into train/val/test
-def split_files(files):
-    n = len(files)
-    return files[:int(0.8*n)], files[int(0.8*n):int(0.9*n)], files[int(0.9*n):]
-
 cat_train, cat_val, cat_test = split_files(cats)
 dog_train, dog_val, dog_test = split_files(dogs)
 logger.info(f"Cat split: train={len(cat_train)}, val={len(cat_val)}, test={len(cat_test)}")
 logger.info(f"Dog split: train={len(dog_train)}, val={len(dog_val)}, test={len(dog_test)}")
-
-# Copy files to respective folders with error handling
-def safe_copy(src, dst):
-    try:
-        shutil.copy(src, dst)
-        logger.debug(f"Copied {src} to {dst}")
-    except Exception as e:
-        logger.error(f"Failed to copy {src} to {dst}: {e}")
 
 for f in cat_train:
     safe_copy(f"{SRC}/Cat/{f}", f"{DEST}/train/Cat/{f}")
@@ -65,8 +76,6 @@ for f in dog_val:
     safe_copy(f"{SRC}/Dog/{f}", f"{DEST}/val/Dog/{f}")
 for f in dog_test:
     safe_copy(f"{SRC}/Dog/{f}", f"{DEST}/test/Dog/{f}")
-import os, shutil, random
-
 SRC = "data/raw/PetImages"
 DEST = "data"
 
